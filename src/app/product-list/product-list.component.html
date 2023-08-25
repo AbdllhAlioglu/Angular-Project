@@ -1,0 +1,67 @@
+<div class="card bg-warning" *ngIf="selectedProduct">
+  <div class="container card col-8 mb-3 my-4 border border-warning">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          src="../../assets/image/{{ selectedProduct.imageUrl }}"
+          class="img-fluid rounded-start my-4"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ selectedProduct.name }}</h5>
+          <p class="card-text">
+            {{ selectedProduct.description }}
+          </p>
+          <p>{{ selectedProduct.price }} TL</p>
+          <button (click)="unselectedProduct()" class="btn btn-primary">
+            Ürünü Kaldır
+          </button>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="products.length > 0; else noProducts">
+  <ng-template [ngTemplateOutlet]="productList1"></ng-template>
+</div>
+
+<ng-template #productList1>
+  <div *ngFor="let product of products">
+    <div class="container card col-8 mb-3 my-4">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="../../assets/image/{{ product.imageUrl }}"
+            class="img-fluid rounded-start my-4"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">
+              {{ product.description }}
+            </p>
+            <p>{{ product.price }} TL</p>
+            <button (click)="selectProduct(product)" class="btn btn-primary">
+              Ürünü İncele
+            </button>
+            <p class="card-text">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noProducts>
+  <div class="alert alert-warning">Ürün yok</div>
+</ng-template>
